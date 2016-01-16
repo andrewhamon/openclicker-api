@@ -13,6 +13,8 @@
 class UserSerializer < ApplicationSerializer
   attributes :id, :email
   attribute :token, if: :is_current_user?
+  has_many :courses
+  has_many :courses_taught
 
   def is_current_user?
     object.id == scope.id

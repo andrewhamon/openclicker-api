@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116054716) do
+ActiveRecord::Schema.define(version: 20160116140909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "courses", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "user_id"
+    t.string   "name",        null: false
+    t.integer  "user_id",     null: false
     t.string   "access_code", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -26,6 +26,19 @@ ActiveRecord::Schema.define(version: 20160116054716) do
 
   add_index "courses", ["access_code"], name: "index_courses_on_access_code", using: :btree
   add_index "courses", ["user_id"], name: "index_courses_on_user_id", using: :btree
+
+  create_table "enrollments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "course_id",   null: false
+    t.string   "external_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "enrollments", ["course_id"], name: "index_enrollments_on_course_id", using: :btree
+  add_index "enrollments", ["external_id"], name: "index_enrollments_on_external_id", using: :btree
+  add_index "enrollments", ["user_id", "course_id"], name: "index_enrollments_on_user_id_and_course_id", using: :btree
+  add_index "enrollments", ["user_id"], name: "index_enrollments_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",           null: false
@@ -39,4 +52,6 @@ ActiveRecord::Schema.define(version: 20160116054716) do
   add_index "users", ["token"], name: "index_users_on_token", using: :btree
 
   add_foreign_key "courses", "users"
+  add_foreign_key "enrollments", "courses"
+  add_foreign_key "enrollments", "users"
 end
