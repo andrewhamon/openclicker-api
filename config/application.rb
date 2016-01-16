@@ -26,7 +26,7 @@ module OpenclickerApi
     config.middleware.insert_before 0, "Rack::Cors" do
       allow do
         origins { |source, env| true }
-        resource '*', :headers => :any, :methods => [:get, :post, :put, :delete, :options]
+        resource '*', :headers => :any, :methods => [:get, :post, :put, :patch, :delete, :options]
       end
     end
   end
