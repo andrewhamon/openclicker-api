@@ -27,7 +27,7 @@ class Course < ActiveRecord::Base
 
   def generate_access_code
     begin
-      self.access_code = SecureRandom.hex(8)
+      self.access_code = SecureRandom.hex(4)
     end while self.class.exists?(access_code: access_code)
   end
 end
