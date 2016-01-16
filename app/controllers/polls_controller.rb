@@ -57,6 +57,7 @@ class PollsController < ApplicationController
   def set_response
     poll = course.polls.last!
     return poll_not_active_error unless poll.active
+    return user_not_enrolled_error unless course.students.exists?(current_user.id)
     response = current_user.responses.find_or_initialize_by(poll: poll)
     response.answer = response_params[:answer]
     response.save ? status = :ok : status = :bad_request
@@ -79,5 +80,9 @@ class PollsController < ApplicationController
 
   def poll_not_active_error
     render json: { error: 'Can not respond to a closed poll' }, status: :bad_request
+  end
+
+  def user_not_enrolled_error
+    render json: { error: 'You are not enrolled in this course' }, status: :bad_request
   end
 end
