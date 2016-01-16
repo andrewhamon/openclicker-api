@@ -13,6 +13,7 @@
 class CourseSerializer < ApplicationSerializer
   attributes :id, :name, :enrolled, :access_code
   has_one :user, key: :instructor
+  has_many :polls
 
   def enrolled
     object.students.exists?(scope.id)
