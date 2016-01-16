@@ -131,7 +131,7 @@
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z126"></relationship>
     </object>
     <object type="LMENVIRONMENTVARIABLEVALUE" id="z109">
-        <attribute name="value" type="string">http://localhost:3000</attribute>
+        <attribute name="value" type="string">http://api.openclicker.click</attribute>
         <relationship name="environment" type="1/1" destination="LMENVIRONMENT" idrefs="z103"></relationship>
         <relationship name="variable" type="1/1" destination="LMENVIRONMENTVARIABLE" idrefs="z116"></relationship>
     </object>
@@ -190,7 +190,7 @@
     </object>
     <object type="LMREQUEST" id="z115">
         <attribute name="uuid" type="string">4BBCAB40-D63E-43E5-8A40-798353F22044</attribute>
-        <attribute name="url" type="string">[{"data":{"environmentVariable":"CFBEA6ED-8B36-4A25-AED3-67AD1844BAC6"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"},"\\/courses\\/b00ecd0e56e1e47f"]</attribute>
+        <attribute name="url" type="string">[{"data":{"environmentVariable":"CFBEA6ED-8B36-4A25-AED3-67AD1844BAC6"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"},"\\/courses\\/3ef197297e9e71bf"]</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
@@ -295,7 +295,7 @@
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">POST</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"json":"{\\"user\\":{\\"email\\":\\"andrew+2@teeps.org\\",\\"password\\":\\"password\\"}}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\"user\\":{\\"email\\":\\"andrew@teeps.org\\",\\"password\\":\\"password\\"}}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
         <attribute name="order" type="int64">1</attribute>
         <attribute name="name" type="string">Login</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z106"></relationship>
