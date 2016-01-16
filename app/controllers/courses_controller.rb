@@ -29,7 +29,7 @@ class CoursesController < ApplicationController
   end
 
   def show
-    render json: course
+    render json: course, include: [:instructor, polls: [:response]]
   end
 
   private
