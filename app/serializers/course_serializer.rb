@@ -16,6 +16,6 @@ class CourseSerializer < ApplicationSerializer
   has_many :polls
 
   def enrolled
-    object.students.exists?(scope.id)
+    object.students.exists?(scope&.id)
   end
 end

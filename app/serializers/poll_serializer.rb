@@ -26,11 +26,11 @@ class PollSerializer < ApplicationSerializer
   end
 
   def response
-    scope.responses.where(poll_id: object.id).first
+    scope&.responses&.where(poll_id: object.id)&.first
   end
 
   def is_instructor_or_closed?
-    object.course.user_id == scope.id || !active?
+    object.course.user_id == scope&.id || !active?
   end
 
   def active?

@@ -13,6 +13,8 @@ gem 'puma'
 gem 'pundit'
 gem 'kaminari'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'pusher'
+gem 'delayed_job_active_record'
 
 group :development do
   gem 'spring'

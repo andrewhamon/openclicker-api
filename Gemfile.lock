@@ -54,6 +54,11 @@ GEM
     byebug (8.2.1)
     concurrent-ruby (1.0.0)
     debug_inspector (0.0.2)
+    delayed_job (4.1.1)
+      activesupport (>= 3.0, < 5.0)
+    delayed_job_active_record (4.1.0)
+      activerecord (>= 3.0, < 5)
+      delayed_job (>= 3.0, < 5)
     diff-lcs (1.2.5)
     dotenv (2.1.0)
     dotenv-rails (2.1.0)
@@ -70,6 +75,7 @@ GEM
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hirb (0.7.3)
+    httpclient (2.7.1)
     i18n (0.7.0)
     json (1.8.3)
     kaminari (0.16.3)
@@ -82,12 +88,18 @@ GEM
     mime-types (2.99)
     mini_portile2 (2.0.0)
     minitest (5.8.3)
+    multi_json (1.11.2)
     nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
     pg (0.18.4)
     puma (2.15.3)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
+    pusher (0.15.2)
+      httpclient (~> 2.5)
+      multi_json (~> 1.0)
+      pusher-signature (~> 0.1.8)
+    pusher-signature (0.1.8)
     rack (1.6.4)
     rack-cors (0.4.0)
     rack-test (0.6.3)
@@ -162,6 +174,7 @@ DEPENDENCIES
   annotate
   bcrypt
   byebug
+  delayed_job_active_record
   dotenv-rails
   factory_girl_rails
   faker
@@ -170,6 +183,7 @@ DEPENDENCIES
   pg
   puma
   pundit
+  pusher
   rack-cors
   rails (= 4.2.5)
   rails-api

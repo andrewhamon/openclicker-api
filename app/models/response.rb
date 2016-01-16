@@ -19,4 +19,8 @@ class Response < ActiveRecord::Base
 
   validates :answer, inclusion: { in: -> (r) { 1..r.poll.choices_count } }
   validates :user, uniqueness: { scope: :poll_id }
+
+  after_commit do
+    poll.touch
+  end
 end

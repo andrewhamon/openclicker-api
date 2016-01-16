@@ -22,6 +22,12 @@ class Poll < ActiveRecord::Base
   validates :answer, inclusion: { in: -> (r) { 1..r.choices_count } }, allow_nil: true
 
   before_create :set_others_to_inactive
+  after_create do
+    delay.push_notification
+  end
+  after_touch do
+    delay.push_results
+  end
 
   def start!
     self.update(active: true)
@@ -43,5 +49,17 @@ class Poll < ActiveRecord::Base
 
   def set_others_to_inactive
     course.polls.update_all(active: false)
+  end
+
+  def push_notification
+    serializer = PollSerializer.new(self)
+    adapter = ActiveModel::Serializer::Adapter.create(serializer)
+    Pusher.trigger(course.access_code, 'new_poll', adapter.as_json)
+  end
+
+  def push_results
+    serializer = PollSerializer.new(self)
+    adapter = ActiveModel::Serializer::Adapter.create(serializer)
+    Pusher.trigger("#{course.access_code}-#{id}", 'results', adapter.as_json)
   end
 end

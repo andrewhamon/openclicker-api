@@ -17,6 +17,6 @@ class UserSerializer < ApplicationSerializer
   has_many :courses_taught
 
   def is_current_user?
-    object.id == scope.id
+    object.id == scope&.id
   end
 end
