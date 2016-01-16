@@ -47,12 +47,12 @@ class PollsController < ApplicationController
   end
 
   def show_response
-    poll = course.polls.first!
+    poll = course.polls.last!
     render json: current_user.responses.where(poll: poll).first!
   end
 
   def set_response
-    poll = course.polls.first!
+    poll = course.polls.last!
     response = current_user.responses.find_or_initialize_by(poll: poll)
     response.answer = response_params[:answer]
     response.save ? status = :ok : status = :bad_request
