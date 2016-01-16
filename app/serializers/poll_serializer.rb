@@ -15,28 +15,25 @@
 class PollSerializer < ApplicationSerializer
   attr_accessor :response
 
-  attributes :id, :description, :choices_count, :active, :responded
+  attributes :id, :description, :choices_count, :active
   belongs_to :course
-  attribute :responded_correctly, if: :poll_is_inactive?
-  attribute :answer, if: :poll_is_inactive?
-  attribute :results, if: :is_instructor?
+  attribute :answer, if: :active?
+  attribute :results, if: :is_instructor_or_closed?
+  has_one :response
 
   def poll_is_inactive?
     !object.active
   end
 
-  def responded_correctly
-    self.response ||= scope.responses.where(poll_id: object.id).first
-    return false unless response.present?
-    response.answer == object.answer
+  def response
+    scope.responses.where(poll_id: object.id).first
   end
 
-  def responded
-    self.response ||= scope.responses.where(poll_id: object.id).first
-    self.response.present?
+  def is_instructor_or_closed?
+    object.course.user_id == scope.id || !active?
   end
 
-  def is_instructor?
-    object.course.user_id == scope.id
+  def active?
+    object.active?
   end
 end
