@@ -15,8 +15,6 @@ class CourseSerializer < ActiveModel::Serializer
   attribute :access_code, if: :user_is_owner?
   has_one :user, key: :instructor
 
-  private
-
   def user_is_owner?
     scope.id == object.user_id
   end
