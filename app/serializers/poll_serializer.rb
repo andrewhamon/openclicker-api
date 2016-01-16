@@ -9,9 +9,29 @@
 #  active        :boolean          default(FALSE), not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  answer        :integer
 #
 
 class PollSerializer < ApplicationSerializer
-  attributes :id, :description, :choices_count, :active
+  attr_accessor :response
+
+  attributes :id, :description, :choices_count, :active, :responded
   belongs_to :course
+  attribute :responded_correctly, if: :poll_is_inactive?
+  attribute :answer, if: :poll_is_inactive?
+
+  def poll_is_inactive?
+    !object.active
+  end
+
+  def responded_correctly
+    self.response ||= scope.responses.where(poll_id: object.id).first
+    return false unless response.present?
+    response.answer == object.answer
+  end
+
+  def responded
+    self.response ||= scope.responses.where(poll_id: object.id).first
+    self.response.present?
+  end
 end

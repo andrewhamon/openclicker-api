@@ -9,6 +9,7 @@
 #  active        :boolean          default(FALSE), not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  answer        :integer
 #
 
 class Poll < ActiveRecord::Base
@@ -18,6 +19,7 @@ class Poll < ActiveRecord::Base
   validates :course, presence: true
   validates :description, presence: true
   validates :choices_count, inclusion: 1..5
+  validates :answer, inclusion: { in: -> (r) { 1..r.choices_count } }, allow_nil: true
 
   before_create :set_others_to_inactive
 

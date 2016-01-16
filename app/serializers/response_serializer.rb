@@ -14,4 +14,13 @@ class ResponseSerializer < ApplicationSerializer
   attributes :id, :answer
   has_one :user
   has_one :poll
+  attribute :correct, if: :poll_is_inactive?
+
+  def poll_is_inactive?
+    !object.poll.active
+  end
+
+  def correct
+    object.answer == object.poll.answer
+  end
 end

@@ -9,6 +9,7 @@
 #  active        :boolean          default(FALSE), not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  answer        :integer
 #
 
 class PollsController < ApplicationController
@@ -61,7 +62,7 @@ class PollsController < ApplicationController
   private
 
   def poll_params
-    params.require(:poll).permit(:description, :choices_count)
+    params.require(:poll).permit(:description, :choices_count, :answer)
   end
 
   def response_params

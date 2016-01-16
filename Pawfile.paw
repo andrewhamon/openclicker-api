@@ -539,7 +539,7 @@
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z143"></relationship>
     </object>
     <object type="LMREQUEST" id="z146">
-        <attribute name="body" type="string">[{"data":{"json":"{\\"response\\":{\\"answer\\":1}}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\"response\\":{\\"answer\\":2}}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
         <attribute name="uuid" type="string">04306C81-8C73-4E14-80C7-056D917EBBC6</attribute>
         <attribute name="url" type="string">[{"data":{"environmentVariable":"CFBEA6ED-8B36-4A25-AED3-67AD1844BAC6"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"},"\\/courses\\/",{"data":{"request":"4BBCAB40-D63E-43E5-8A40-798353F22044","keyPath":["access_code"],"format":0},"identifier":"com.luckymarmot.ResponseBodyPathDynamicValue"},"\\/poll\\/response"]</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
