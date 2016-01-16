@@ -44,6 +44,7 @@ class PollsController < ApplicationController
 
   def create
     poll = course.polls.new(poll_params)
+    poll.active = true
     authorize poll
     poll.save ? status = :ok : status = :bad_request
     render json: poll, status: status
