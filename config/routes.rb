@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :responses, except: [:new, :edit]
   post 'register', to: 'users#register'
   post 'login', to: 'users#login'
   get  'user', to: 'users#show'
@@ -16,4 +17,7 @@ Rails.application.routes.draw do
   post 'courses/:access_code/poll/stop', to: 'polls#stop'
   post 'courses/:access_code/poll', to: 'polls#create'
   post 'courses/:access_code/polls', to: 'polls#create'
+
+  get 'courses/:access_code/poll/response', to: 'polls#show_response'
+  post 'courses/:access_code/poll/response', to: 'polls#set_response'
 end

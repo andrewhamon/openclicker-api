@@ -45,10 +45,27 @@ class PollsController < ApplicationController
     render json: poll, status: status
   end
 
+  def show_response
+    poll = course.polls.first!
+    render json: current_user.responses.where(poll: poll).first!
+  end
+
+  def set_response
+    poll = course.polls.first!
+    response = current_user.responses.find_or_initialize_by(poll: poll)
+    response.answer = response_params[:answer]
+    response.save ? status = :ok : status = :bad_request
+    render json: response, status: status
+  end
+
   private
 
   def poll_params
     params.require(:poll).permit(:description, :choices_count)
+  end
+
+  def response_params
+    params.require(:response).permit(:answer)
   end
 
   def find_course

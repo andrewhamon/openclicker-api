@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116162018) do
+ActiveRecord::Schema.define(version: 20160116173249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,17 @@ ActiveRecord::Schema.define(version: 20160116162018) do
 
   add_index "polls", ["course_id"], name: "index_polls_on_course_id", using: :btree
 
+  create_table "responses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "poll_id"
+    t.integer  "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "responses", ["poll_id"], name: "index_responses_on_poll_id", using: :btree
+  add_index "responses", ["user_id"], name: "index_responses_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",           null: false
     t.string   "password_digest", null: false
@@ -66,4 +77,6 @@ ActiveRecord::Schema.define(version: 20160116162018) do
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
   add_foreign_key "polls", "courses"
+  add_foreign_key "responses", "polls"
+  add_foreign_key "responses", "users"
 end

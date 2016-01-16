@@ -13,6 +13,7 @@
 
 class Poll < ActiveRecord::Base
   belongs_to :course
+  has_many :responses
 
   validates :course, presence: true
   validates :description, presence: true

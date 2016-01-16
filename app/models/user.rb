@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   has_many :courses_taught, class_name: 'Course'
   has_many :enrollments
   has_many :courses, through: :enrollments
+  has_many :responses
 
   private
 
