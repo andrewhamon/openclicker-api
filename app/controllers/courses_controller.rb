@@ -39,6 +39,6 @@ class CoursesController < ApplicationController
   end
 
   def find_course
-    self.course = Course.find_by(access_code: params[:access_code])
+    self.course = Course.find_by!(access_code: params[:access_code])
   end
 end
