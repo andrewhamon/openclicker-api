@@ -31,6 +31,14 @@ class Poll < ActiveRecord::Base
     self.update(active: false)
   end
 
+  def results
+    results = responses.group(:answer).count
+    (1..choices_count).each do |choice|
+      results[choice] ||= 0
+    end
+    results
+  end
+
   private
 
   def set_others_to_inactive

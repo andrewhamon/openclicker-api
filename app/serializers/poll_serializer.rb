@@ -19,6 +19,7 @@ class PollSerializer < ApplicationSerializer
   belongs_to :course
   attribute :responded_correctly, if: :poll_is_inactive?
   attribute :answer, if: :poll_is_inactive?
+  attribute :results, if: :is_instructor?
 
   def poll_is_inactive?
     !object.active
@@ -33,5 +34,9 @@ class PollSerializer < ApplicationSerializer
   def responded
     self.response ||= scope.responses.where(poll_id: object.id).first
     self.response.present?
+  end
+
+  def is_instructor?
+    object.course.user_id == scope.id
   end
 end
