@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true, if: :email_changed?
   validates :token, presence: true
 
+  has_many :courses_taught, class_name: 'Course'
+
   private
 
   def generate_token
