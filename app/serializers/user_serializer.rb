@@ -1,11 +1,8 @@
-class UserSerializer < ActiveModel::Serializer
-  attributes :id, :email, :token
+class UserSerializer < ApplicationSerializer
+  attributes :id, :email
+  attribute :token, if: :is_current_user?
 
-  def filter(keys)
-    if scope == object
-      keys
-    else
-      keys - [:token]
-    end
+  def is_current_user?
+    object.id == scope.id
   end
 end
