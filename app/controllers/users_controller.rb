@@ -26,6 +26,10 @@ class UsersController < ApplicationController
     render json: current_user
   end
 
+  def show
+    render json: current_user
+  end
+
   private
 
   def user_not_authenticated

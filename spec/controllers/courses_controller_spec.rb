@@ -10,16 +10,8 @@
 #  updated_at  :datetime         not null
 #
 
-class CourseSerializer < ActiveModel::Serializer
-  attributes :id, :name, :enrolled
-  attribute :access_code, if: :user_is_owner?
-  has_one :user, key: :instructor
+require 'rails_helper'
 
-  def user_is_owner?
-    scope.id == object.user_id
-  end
+RSpec.describe CoursesController, type: :controller do
 
-  def enrolled
-    object.students.exists?(scope.id)
-  end
 end
