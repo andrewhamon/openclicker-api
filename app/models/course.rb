@@ -14,6 +14,7 @@ class Course < ActiveRecord::Base
   belongs_to :user
   has_many :enrollments
   has_many :students, through: :enrollments, source: :user
+  has_many :polls
 
   validates :name, presence: true
   validates :user, presence: true
