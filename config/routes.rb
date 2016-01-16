@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   get  'user', to: 'users#show'
 
   post 'courses', to: 'courses#create'
-  post 'courses/enroll', to: 'courses#enroll'
+  post 'courses/:access_code/enroll', to: 'courses#enroll'
   get  'courses/:access_code', to: 'courses#show'
 end

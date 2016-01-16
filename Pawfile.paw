@@ -93,12 +93,12 @@
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">POST</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">["{\\n  \\"course\\": {\\n    \\"name\\": \\"My cool course\\"\\n  }\\n}"]</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\"course\\":{\\"name\\":\\"My cool course\\"}}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
         <attribute name="order" type="int64">0</attribute>
         <attribute name="name" type="string">Create</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z124"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
-        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z119 z104"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z104 z119"></relationship>
     </object>
     <object type="LMREQUESTGROUP" id="z106">
         <attribute name="uuid" type="string">236930D6-FC47-4BD6-BA0D-3783FDF35748</attribute>
@@ -154,19 +154,19 @@
     </object>
     <object type="LMREQUEST" id="z112">
         <attribute name="uuid" type="string">459FA437-B33C-4FD3-B6D2-C1D66A424F3A</attribute>
-        <attribute name="url" type="string">[{"data":{"environmentVariable":"CFBEA6ED-8B36-4A25-AED3-67AD1844BAC6"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"},"\\/courses\\/enroll"]</attribute>
+        <attribute name="url" type="string">[{"data":{"environmentVariable":"CFBEA6ED-8B36-4A25-AED3-67AD1844BAC6"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"},"\\/courses\\/",{"data":{"request":"4BBCAB40-D63E-43E5-8A40-798353F22044","keyPath":["access_code"],"format":0},"identifier":"com.luckymarmot.ResponseBodyPathDynamicValue"},"\\/enroll"]</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">POST</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"json":"{\\"course\\":{\\"access_code\\":\\"1a89fd26423066ea\\"}}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
         <attribute name="order" type="int64">2</attribute>
         <attribute name="name" type="string">Enroll</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z124"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
-        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z114 z110"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z110 z114"></relationship>
     </object>
     <object type="LMKEYVALUE" id="z113">
         <attribute name="value" type="string">["Token token=",{"data":{"environmentVariable":"E55A5DF8-5D98-4786-B5D8-FC478CBFD6F1"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"}]</attribute>
@@ -190,7 +190,7 @@
     </object>
     <object type="LMREQUEST" id="z115">
         <attribute name="uuid" type="string">4BBCAB40-D63E-43E5-8A40-798353F22044</attribute>
-        <attribute name="url" type="string">[{"data":{"environmentVariable":"CFBEA6ED-8B36-4A25-AED3-67AD1844BAC6"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"},"\\/courses\\/1a89fd26423066ea"]</attribute>
+        <attribute name="url" type="string">[{"data":{"environmentVariable":"CFBEA6ED-8B36-4A25-AED3-67AD1844BAC6"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"},"\\/courses\\/b00ecd0e56e1e47f"]</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>

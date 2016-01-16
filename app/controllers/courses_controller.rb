@@ -11,22 +11,24 @@
 #
 
 class CoursesController < ApplicationController
+  attr_accessor :course
+  before_action :find_course, only: [:enroll, :show]
+
   def create
-    course = Course.new(course_params)
+    self.course = Course.new(course_params)
     course.user = current_user
     course.save ? status = :created : status = :bad_request
     render json: course, status: status
   end
 
   def enroll
-    course = Course.find_by!(access_code: course_params[:access_code])
-    enrollment = Enrollment.new(course: course, user: current_user)
+    enrollment = Enrollment.find_or_initialize_by(course: course, user: current_user)
+    return render json: course unless enrollment.new_record?
     enrollment.save ? status = :created : status = :bad_request
     render json: course, status: status
   end
 
   def show
-    course = Course.find_by!(access_code: params[:access_code])
     render json: course
   end
 
@@ -34,5 +36,9 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course).permit(:name, :access_code)
+  end
+
+  def find_course
+    self.course = Course.find_by(access_code: params[:access_code])
   end
 end
