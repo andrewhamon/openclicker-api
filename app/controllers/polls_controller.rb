@@ -30,18 +30,21 @@ class PollsController < ApplicationController
 
   def start
     poll = course.polls.last!
+    authorize poll
     poll.start!
     render json: poll
   end
 
   def stop
     poll = course.polls.last!
+    authorize poll
     poll.stop!
     render json: poll
   end
 
   def create
     poll = course.polls.new(poll_params)
+    authorize poll
     poll.save ? status = :ok : status = :bad_request
     render json: poll, status: status
   end
@@ -53,6 +56,7 @@ class PollsController < ApplicationController
 
   def set_response
     poll = course.polls.last!
+    return poll_not_active_error unless poll.active
     response = current_user.responses.find_or_initialize_by(poll: poll)
     response.answer = response_params[:answer]
     response.save ? status = :ok : status = :bad_request
@@ -71,5 +75,9 @@ class PollsController < ApplicationController
 
   def find_course
     self.course = Course.find_by!(access_code: params[:access_code])
+  end
+
+  def poll_not_active_error
+    render json: { error: 'Can not respond to a closed poll' }, status: :bad_request
   end
 end
